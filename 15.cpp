@@ -1,4 +1,31 @@
-Longest Subarray With Sum K
+Longest Subarray With Sum K (Positive)
+
+
+You are given an array 'a' of size 'n' and an integer 'k'.Find the length of the longest subarray of 'a' whose sum is equal to 'k'.
+Example :
+Input: ‘n’ = 7 ‘k’ = 3
+‘a’ = [1, 2, 3, 1, 1, 1, 1]
+
+
+
+   
+  int longestSubarrayWithSumK(vector<int> a, long long k) {
+   int n = a.size();
+   int length=0;
+    for(int i=0;i<n;i++){
+       int sum =0;
+      for(int j=i;j<n;j++){
+         sum+=a[j];
+         if(sum==k)
+         length=max(length,j-i+1);
+       }
+    }
+    return length;
+} 
+
+Time Complexity : O(n*n)
+Space Complexity: O(1)
+
 
 
 #include <bits/stdc++.h>
