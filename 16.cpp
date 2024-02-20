@@ -54,7 +54,7 @@ int longestSubarrayWithSumK(vector<int> a, long long k) {
       int length = i-mp[rem];              //mp[rem] would give the index of the element where the prefix sum
       maxlength=max(maxlength,length);
    }
-   if (mp.find(rem) == mp.end())
+   if (mp.find(sum) == mp.end())
    mp[sum]=i;
    }
    return maxlength;
