@@ -53,3 +53,38 @@ Reason: Here, we are mainly using 2 nested loops. And inserting triplets into th
 But we are not considering the time complexity of sorting as we are just sorting 3 elements every time.
   
 Space Complexity: o(N) for hashset +  O(2 * no. of the unique triplets) as we are using a set data structure and a list(vector) to store the triplets.
+
+
+
+  #include<bits/stdc++.h>
+vector<vector<int>> triplet(int n, vector<int> &nums){
+  vector<vector<int>>ans;
+  sort(nums.begin(),nums.end());
+
+  for(int i=0;i<n;i++){
+    if(i>0 && nums[i] == nums[i-1]) continue;
+    int j=i+1;
+    int k=n-1;
+    while(j<k){
+      int sum= nums[i]+nums[j]+nums[k];
+      if(sum<0)j++;
+      else if(sum>0)k--;
+      else{
+        vector<int>temp={nums[i],nums[j],nums[k]};
+        ans.push_back(temp);
+        j++;
+        k--;
+        while(j<k && nums[j]==nums[j-1]) j++;
+        while(j<k&&nums[k]==nums[k+1]) k--;
+      }
+    }
+  }
+  return ans;
+}
+
+
+
+Time Complexity: O(N^3), where N = size of the array.
+Reason: Each of the pointers i and j, is running for approximately N times. And both the pointers k and l combined can run for approximately N times including the operation of skipping duplicates. So the total time complexity will be O(N3). 
+
+Space Complexity: O(1)
