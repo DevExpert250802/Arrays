@@ -20,3 +20,18 @@ Example 3:
 Input: nums = [1,2,3]
 Output: true
   */
+
+
+class Solution {
+public:
+    bool check(vector<int>& nums) {
+        int n=nums.size();
+        int count = 0;
+//nums[i] > nums[i+1] ==>  1 time sorted and rotated   nums = [3,4,5,1,2]
+        for(int i=0;i<n-1;i++){
+            if(nums[i] > nums[i+1]) count++;
+        }
+        if(nums[n-1] > nums[0]) count++;  // nums = [1,2,3]
+        return count <= 1;       // nums = [1,1,1] ( < )
+    }
+};
