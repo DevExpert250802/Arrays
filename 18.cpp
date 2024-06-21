@@ -40,11 +40,9 @@ long long maxSubarraySum(vector<int> arr, int n){
       sum+=arr[i];
 
       if(sum>maxsum) maxsum= sum;
-
+     
       if(sum<0) sum=0;
    }
-   // To consider the sum of the empty subarray if 0
-   if (maxsum < 0) maxsum = 0;
    return maxsum;
 }
 
