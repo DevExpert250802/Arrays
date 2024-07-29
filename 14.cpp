@@ -21,14 +21,13 @@ Space Complexity: O(1)
 Approach 2 : 
   
 int getSingleElement(vector<int> &arr){
-    int x;
-    for(int i=0;i<arr.size();i=i+2){
-        if(arr[i]!=arr[i+1]){
-            x=arr[i];
-		    break;
+	int n=arr.size();
+	for(int i=0;i<n;i+=2){
+          if (arr[i] != arr[i + 1]) {
+            return arr[i];
+          }
         }
-    }
-    return x;
+	return arr[n-1];
 }
 
 Time Complexity: O(N/2)
@@ -54,13 +53,13 @@ int getSingleElement(vector<int> &arr){
 	while(l<=r){
 		mid = l + (r-l)/2;
 		if(arr[mid]!=arr[mid+1] && arr[mid]!=arr[mid-1]) return arr[mid];
-
-	    if((mid%2 ==1 && arr[mid-1] == arr[mid]) || (mid%2 ==0 && arr[mid] == arr[mid+1])){
-            l = mid+1;
+		
+	        if((mid%2 ==1 && arr[mid-1] == arr[mid]) || (mid%2 ==0 && arr[mid] == arr[mid+1])){
+                    l = mid+1;
 		} 
 		else{
-				r = mid-1;
-			}
+		    r = mid-1;
+		    }
 		}
 	return -1;	
 }
