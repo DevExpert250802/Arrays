@@ -70,13 +70,13 @@ public:
             suffix*=arr[n-i-1];
             maxproduct = max(maxproduct,max(prefix,suffix));
         }
-        return maxproduct;
+        return (int)maxproduct;
     }
 };
 
 /*
-for those wondering why double was used , Using double to store the products in code works because the double data type has a much larger rang
-e compared to int or even long long. This allows the intermediate products to be represented without causing overflow.
+for those wondering why double was used, Using double to store the products in code works because the double data type has a much larger range
+compared to int or even long long. This allows the intermediate products to be represented without causing overflow.
 */
 
 
