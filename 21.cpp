@@ -58,21 +58,26 @@ So, we will divide the given array based on the location of the 0’s and apply 
 
 
 
-#include<bits/stdc++.h>
-int subarrayWithMaxProduct(vector<int> &arr){
-  int n = arr.size();
-  int maxi=INT_MIN;
-  int prefix=1,suffix=1;
-  for (int i=0; i<n; i++){
-    if(prefix==0) prefix=1;
-    if(suffix==0) suffix=1;
-    
-    prefix*=arr[i];
-    suffix*=arr[n-i-1];
-    maxi=max(maxi,max(prefix,suffix));
-  }
-  return maxi;
-}
+class Solution {
+public:
+    int maxProduct(vector<int>&arr) {
+        int n= arr.size();
+        double prefix=1,suffix=1, maxproduct=INT_MIN;
+        for(int i=0;i<n;i++){
+            if(prefix==0)prefix=1;
+            if(suffix==0)suffix=1;
+            prefix*=arr[i];
+            suffix*=arr[n-i-1];
+            maxproduct = max(maxproduct,max(prefix,suffix));
+        }
+        return maxproduct;
+    }
+};
+
+/*
+for those wondering why double was used , Using double to store the products in code works because the double data type has a much larger rang
+e compared to int or even long long. This allows the intermediate products to be represented without causing overflow.
+*/
 
 
 T.C. = O(n)
