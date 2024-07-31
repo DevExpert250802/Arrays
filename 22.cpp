@@ -1,18 +1,17 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-pair<int, int> findLongestIncreasingSubarray(vector<int>& arr) {
+vector<int> findLongestIncreasingSubarray(vector<int>& arr) {
     int n = arr.size();
+    if (n == 0) return {};
+
     int max_start = 0;
     int max_length = 1;
     int current_start = 0;
     int current_length = 1;
 
     for (int i = 1; i < n; ++i) {
-        if (arr[i] > arr[i - 1]) {
+        if (arr[i] > arr[i-1]) {
             current_length++;
         } else {
             current_start = i;
@@ -25,19 +24,24 @@ pair<int, int> findLongestIncreasingSubarray(vector<int>& arr) {
         }
     }
 
-    return make_pair(max_start, max_length);
+    vector<int> longest_subarray(arr.begin() + max_start, arr.begin() + max_start + max_length);
+    return longest_subarray;
 }
 
 int main() {
-    vector<int> arr = {1, 2, 3, 1, 2, 3, 4, 5};
-    
-    pair<int, int> result = findLongestIncreasingSubarray(arr);
+    int n; cin >> n;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    vector<int> result = findLongestIncreasingSubarray(arr);
 
     cout << "Longest Increasing Subarray: ";
-    for (int i = result.first; i < result.first + result.second; ++i) {
-        cout << arr[i] << " ";
+    for (int num : result) {
+        cout << num << " ";
     }
     cout << endl;
 
-return 0;
+    return 0;
 }
