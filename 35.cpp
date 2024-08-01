@@ -127,6 +127,69 @@ vector<int> findMissingRepeatingNumbers(vector<int> a) {
 
 
 
-Time Complexity:   O(3N)
+Time Complexity:   O(4N)
+Space Complexity:  O(1)
 
+
+
+
+
+
+
+    
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> findMissingRepeatingNumbers(vector<int> a) {
+    int n = a.size(); // size of the array
+
+    int xr = 0;
+
+    //Step 1: Find XOR of all elements:
+    for (int i = 0; i < n; i++) {
+        xr = xr ^ a[i];
+        xr = xr ^ (i + 1);
+    }
+
+    // calculating the number containing the rightmost set bit as 1 instead of "bitNo"
+    
+    int number = (xr & ~(xr - 1));
+
+    //Step 3: Group the numbers:
+    int zero = 0;
+    int one = 0;
+    for (int i = 0; i < n; i++) {
+        //part of 1 group:
+        if ((a[i] & number) != 0) {
+            one = one ^ a[i];
+        }
+        //part of 0 group:
+        else {
+            zero = zero ^ a[i];
+        }
+
+        // Also consider the numbers from 1 to n in the same loop
+        if (((i+1) & number) != 0) {
+            one = one ^ (i+1);
+        }
+        //part of 0 group:
+        else {
+            zero = zero ^ (i+1);
+        }
+    }
+
+    // Last step: Identify the numbers:
+    int cnt = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] == zero) cnt++;
+    }
+
+    if (cnt == 2) return {zero, one};
+    return {one, zero};
+}
+
+
+Time Complexity:   O(3N)
 Space Complexity:  O(1)
