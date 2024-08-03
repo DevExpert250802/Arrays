@@ -93,7 +93,7 @@ int reversePairs(vector<int>& arr){
 };
 
 
-Time Complexity:   O(N*logN)
+Time Complexity:   O(2N*logN) 
 
 Space Complexity:  O(1)
 
@@ -180,6 +180,6 @@ int reversePairs(vector<int>& arr){
 
 
 
-Time Complexity:   O(N*logN)
+Time Complexity:   O(2N*logN)
 
 Space Complexity:  O(1)
